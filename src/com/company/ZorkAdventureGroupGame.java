@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ZorkAdventureGroupGame {
@@ -7,9 +8,15 @@ public class ZorkAdventureGroupGame {
     public static void main(String[] args) {
 
         Scanner keyboard = new Scanner(System.in);
-        String answer = "", formattedPersonalAmount = "";;
-        double personalTotal = 0;
         CastleRooms castleRooms = new CastleRooms();
+        String answer = "", formattedPersonalAmount = "";
+        StringBuilder listOfItemsSeen = new StringBuilder();
+
+        int numOfRoomsVisited = 1;
+        double personalTotal = 0;
+        boolean visitRoom2 = true, visitRoom3 = true, visitRoom4 = true, visitRoom5 = true,
+                visitRoom6 = true, visitRoom7 = true, visitRoom8 = true;
+
 
         System.out.println("Initial amount is $" + personalTotal);
         System.out.println(castleRooms.getFoyer());
@@ -20,7 +27,9 @@ public class ZorkAdventureGroupGame {
             answer = keyboard.nextLine();
         }
 
-        int numOfRoomsVisited = 1;
+        if (numOfRoomsVisited == 1) {
+            listOfItemsSeen.append("dead scorpion.\n");
+        }
         while (!answer.equalsIgnoreCase("Q")) {
             switch (answer) {
                 case "1": personalTotal += (0.01 + Math.random() * 1000.0);
@@ -38,11 +47,14 @@ public class ZorkAdventureGroupGame {
 
                             if (answer.equalsIgnoreCase("exit")) {
                                 System.out.println("\n" + castleRooms.exit());
-                                System.out.println("Number of rooms visited: " + numOfRoomsVisited);
+                                System.out.println("\nNumber of rooms visited: " + numOfRoomsVisited);
+                                System.out.println("\nItems seen: \n" + listOfItemsSeen.toString());
                                 formattedPersonalAmount = String.format("%.02f",personalTotal);
                                 System.out.println("Total amount is $" + formattedPersonalAmount);
+
                                 System.exit(0);
                             }
+
                             break;
 
                 case "2": personalTotal += (0.01 + Math.random() * 1000.0);
@@ -59,6 +71,12 @@ public class ZorkAdventureGroupGame {
                             answer = keyboard.nextLine();
 
                         }
+
+                        if (visitRoom2) {
+                            numOfRoomsVisited++;
+                            listOfItemsSeen.append("piano.\n");
+                            visitRoom2 = false;
+                        }
                             break;
 
                 case "3": personalTotal += (0.01 + Math.random() * 1000.0);
@@ -72,6 +90,12 @@ public class ZorkAdventureGroupGame {
                             }
                             System.out.println("North (5), East (2). Try again:");
                             answer = keyboard.nextLine();
+                        }
+
+                        if (visitRoom3) {
+                            numOfRoomsVisited++;
+                            listOfItemsSeen.append("spiders.\n");
+                            visitRoom3 = false;
                         }
                             break;
 
@@ -87,6 +111,12 @@ public class ZorkAdventureGroupGame {
                             System.out.println("North (7), West (2). Try again:");
                             answer = keyboard.nextLine();
                         }
+
+                        if (visitRoom4) {
+                            numOfRoomsVisited++;
+                            listOfItemsSeen.append("bats.\n");
+                            visitRoom4 = false;
+                        }
                             break;
 
                 case "5": personalTotal += (0.01 + Math.random() * 1000.0);
@@ -98,6 +128,13 @@ public class ZorkAdventureGroupGame {
                             System.out.println("South (3). Try again:");
                             answer = keyboard.nextLine();
                         }
+
+                        if (visitRoom5) {
+                            numOfRoomsVisited++;
+                            listOfItemsSeen.append("dust and empty box.\n");
+                            visitRoom5 = false;
+                        }
+
                             break;
 
                 case "6": personalTotal += (0.01 + Math.random() * 1000.0);
@@ -108,6 +145,12 @@ public class ZorkAdventureGroupGame {
                     while (!answer.equalsIgnoreCase("7")) {
                         System.out.println("East (7). Try again:");
                         answer = keyboard.nextLine();
+                    }
+
+                    if (visitRoom6) {
+                        numOfRoomsVisited++;
+                        listOfItemsSeen.append("three walking skeletons.\n");
+                        visitRoom6 = false;
                     }
 
                     double random = Math.random();
@@ -127,6 +170,12 @@ public class ZorkAdventureGroupGame {
                         System.out.println("West (6) or South (4). Try again:");
                         answer = keyboard.nextLine();
                     }
+
+                    if (visitRoom7) {
+                        numOfRoomsVisited++;
+                        listOfItemsSeen.append("treasure chest.\n");
+                        visitRoom7 = false;
+                    }
                             break;
 
                 case "8": personalTotal += (0.01 + Math.random() * 1000.0);
@@ -138,6 +187,12 @@ public class ZorkAdventureGroupGame {
                     while (!answer.equalsIgnoreCase("6")) {
                         System.out.println("West (6). Try again:");
                         answer = keyboard.nextLine();
+                    }
+
+                    if (visitRoom8) {
+                        numOfRoomsVisited++;
+                        listOfItemsSeen.append("piles of gold.\n");
+                        visitRoom8 = false;
                     }
                             break;
             }
