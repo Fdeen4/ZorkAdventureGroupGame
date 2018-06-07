@@ -34,17 +34,16 @@ public class CastleRooms extends ZorkAdventureGroupGame {
 
     public String getParlor() {
 
-        double random = Math.random();
-
-        if (random < 0.25)
-            return "You are standing in the secret room of an old house.\n"
-                    + "You see piles of gold.\n" +
-                    "{You can exit to the west (6) or press Q to quit}";
-        else
-            return "You are standing in the parlor of an old house.\n"
+        return "You are standing in the parlor of an old house.\n"
                     + "You see a treasure chest.\n" +
                     "{You can exit to the west (6), south (4), or press Q to quit}";
 
+    }
+
+    public String getSecretRoom() {
+        return "You are standing in the secret room of an old house.\n"
+                + "You see piles of gold.\n" +
+                "{You can exit to the west (6) or press Q to quit}";
     }
 
     public String getVault() {
