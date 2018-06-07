@@ -11,34 +11,35 @@ public class ZorkAdventureGroupGame {
         Foyer foyer = new Foyer();
         FrontRoom frontRoom = new FrontRoom();
         Library library = new Library();
+        Kitchen kitchen = new Kitchen();
+        Parlor parlor = new Parlor();
 
-        System.out.println(foyer.description());
+        System.out.println(foyer.startingPoint());
         answer = keyboard.nextLine();
 
         while (!answer.equalsIgnoreCase("Q")) {
-            if (answer.equalsIgnoreCase("north2")) {
-                System.out.println("\n" + foyer.getFrontRoom());
-                answer = keyboard.nextLine();
-
-                if (answer.equalsIgnoreCase("south1")) {
-                    System.out.println("\n" + foyer.description());
-                    answer = keyboard.nextLine();
-                } else if (answer.equalsIgnoreCase("west3")) {
-                    System.out.println("\n" + frontRoom.getLibrary());
-                    answer = keyboard.nextLine();
-
-                    if (answer.equalsIgnoreCase("east2")) {
-                        answer = "north2";
-                    } else if (answer.equalsIgnoreCase("north5")) {
-                        System.out.println("\n" + library.getDiningRoom());
-                        answer = keyboard.nextLine();
-
-                        if (answer.equalsIgnoreCase("south3")) {
-                            System.out.println("\n" + frontRoom.getLibrary());
+            switch (answer) {
+                case "1": System.out.println("\n" + foyer.startingPoint());
                             answer = keyboard.nextLine();
-                        }
-                    }
-                }
+                            break;
+                case "2": System.out.println("\n" + foyer.getFrontRoom());
+                            answer = keyboard.nextLine();
+                            break;
+                case "3": System.out.println("\n" + frontRoom.getLibrary());
+                        answer = keyboard.nextLine();
+                            break;
+                case "4": System.out.println("\n" + frontRoom.getKitchen());
+                            answer = keyboard.nextLine();
+                            break;
+                case "5": System.out.println("\n" + library.getDiningRoom());
+                            answer = keyboard.nextLine();
+                            break;
+                case "6": System.out.println("\n" + parlor.getVault());
+                            answer = keyboard.nextLine();
+                            break;
+                case "7": System.out.println("\n" + kitchen.getParlor());
+                            answer = keyboard.nextLine();
+                            break;
             }
         }
     }
