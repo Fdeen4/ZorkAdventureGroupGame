@@ -1,6 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ZorkAdventureGroupGame {
@@ -9,153 +9,189 @@ public class ZorkAdventureGroupGame {
 
         Scanner keyboard = new Scanner(System.in);
         CastleRooms castleRooms = new CastleRooms();
-        String answer = "", formattedPersonalAmount = "";
-        StringBuilder listOfItemsSeen = new StringBuilder();
+        String answer ="1", formattedPersonalAmount;
+        HashMap<Integer, String> roomMap = new HashMap<>();
 
-        int numOfRoomsVisited = 1;
+        boolean startOfGame = true, visitedSecretRoom = false;
         double personalTotal = 0;
-        boolean visitRoom2 = true, visitRoom3 = true, visitRoom4 = true, visitRoom5 = true,
-                visitRoom6 = true, visitRoom7 = true, visitRoom8 = true;
 
-
-        System.out.println("Initial amount is $" + personalTotal);
-        System.out.println(castleRooms.getFoyer());
-        answer = keyboard.nextLine();
-
-        while (!answer.equalsIgnoreCase("2")) {
-            System.out.println("North (2) or exit. Try again:");
-            answer = keyboard.nextLine();
-        }
-
-        if (numOfRoomsVisited == 1) {
-            listOfItemsSeen.append("dead scorpion.\n");
-        }
         while (!answer.equalsIgnoreCase("Q")) {
             switch (answer) {
-                case "1": personalTotal += (0.01 + Math.random() * 1000.0);
-                        System.out.println("\n" + getPersonalTotal(personalTotal));
-                            System.out.println(castleRooms.getFoyer());
-                            answer = keyboard.nextLine();
+                case "1":
+                    if (startOfGame) {
+                        personalTotal = 0;
+                        startOfGame = false;
+                    } else {
+                        personalTotal += (0.01 + Math.random() * 1000.0);
+                    }
+                    System.out.println("\n" + getPersonalTotal(personalTotal));
+                    System.out.println(castleRooms.getFoyer());
+                    answer = keyboard.nextLine();
+                    if (answer.equalsIgnoreCase("north"))
+                        answer = "2";
 
-                            while (!answer.equalsIgnoreCase("2")) {
-                                if (answer.equalsIgnoreCase("exit")) {
-                                    break;
-                                }
-                                System.out.println("North (2) or exit. Try again:");
-                                answer = keyboard.nextLine();
-                            }
-
-                            if (answer.equalsIgnoreCase("exit")) {
-                                System.out.println("\n" + castleRooms.exit());
-                                System.out.println("\nNumber of rooms visited: " + numOfRoomsVisited);
-                                System.out.println("\nItems seen: \n" + listOfItemsSeen.toString());
-                                formattedPersonalAmount = String.format("%.02f",personalTotal);
-                                System.out.println("Total amount is $" + formattedPersonalAmount);
-
-                                System.exit(0);
-                            }
-
+                    while (!answer.equalsIgnoreCase("2")) {
+                        if (answer.equalsIgnoreCase("exit")
+                                || answer.equalsIgnoreCase("Q")) {
                             break;
+                        }
+                        System.out.println("North or exit. Try again:");
+                        answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("north"))
+                            answer = "2";
+                    }
+
+                    if (answer.equalsIgnoreCase("exit")) {
+                        if (visitedSecretRoom) {
+                            System.out.println("\n" + castleRooms.exit());
+                            System.out.println("\nNumber of rooms visited: " + roomMap.size());
+                            System.out.println("\nItems seen: \n" + roomMap.values());
+                            formattedPersonalAmount = String.format("%.02f", personalTotal);
+                            System.out.println("Total amount is $" + formattedPersonalAmount);
+
+                            System.exit(0);
+                        } else {
+                            answer = "Q";
+                        }
+                    }
+
+                    roomMap.putIfAbsent(1, "dead scorpion");
+                    break;
 
                 case "2": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
-                        System.out.println(castleRooms.getFrontRoom());
-                            answer = keyboard.nextLine();
+                    System.out.println(castleRooms.getFrontRoom());
+                    answer = keyboard.nextLine();
 
-                        while (!answer.equalsIgnoreCase("1") ) {
-                            if (answer.equalsIgnoreCase("3")
-                                    || answer.equalsIgnoreCase("4")) {
-                                break;
-                            }
-                            System.out.println("West (3), East (4) or South (1). Try again:");
-                            answer = keyboard.nextLine();
+                    if (answer.equalsIgnoreCase("south"))
+                    answer = "1";
+                    else if (answer.equalsIgnoreCase("west"))
+                        answer = "3";
+                    else if (answer.equalsIgnoreCase("east"))
+                        answer = "4";
 
-                        }
-
-                        if (visitRoom2) {
-                            numOfRoomsVisited++;
-                            listOfItemsSeen.append("piano.\n");
-                            visitRoom2 = false;
-                        }
+                    while (!answer.equalsIgnoreCase("1") ) {
+                        if (answer.equalsIgnoreCase("3")
+                                || answer.equalsIgnoreCase("4")
+                                || answer.equalsIgnoreCase("Q")) {
                             break;
+                        }
+                        System.out.println("West, East or South. Try again:");
+                        answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("south"))
+                            answer = "1";
+                        else if (answer.equalsIgnoreCase("west"))
+                            answer = "3";
+                        else if (answer.equalsIgnoreCase("east"))
+                            answer = "4";
+
+                    }
+
+                    roomMap.putIfAbsent(2, "piano");
+                    break;
 
                 case "3": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
-                        System.out.println(castleRooms.getLibrary() );
-                            answer = keyboard.nextLine();
+                    System.out.println(castleRooms.getLibrary() );
+                    answer = keyboard.nextLine();
 
-                        while (!answer.equalsIgnoreCase("2") ) {
-                            if (answer.equalsIgnoreCase("5")) {
-                                break;
-                            }
-                            System.out.println("North (5), East (2). Try again:");
-                            answer = keyboard.nextLine();
-                        }
+                    if (answer.equalsIgnoreCase("north"))
+                        answer = "5";
+                    else if (answer.equalsIgnoreCase("east"))
+                        answer = "2";
 
-                        if (visitRoom3) {
-                            numOfRoomsVisited++;
-                            listOfItemsSeen.append("spiders.\n");
-                            visitRoom3 = false;
-                        }
+                    while (!answer.equalsIgnoreCase("2") ) {
+                        if (answer.equalsIgnoreCase("5")
+                                || answer.equalsIgnoreCase("Q")) {
                             break;
+                        }
+                        System.out.println("North or East. Try again:");
+                        answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("north"))
+                            answer = "5";
+                        else if (answer.equalsIgnoreCase("east"))
+                            answer = "2";
+                    }
+
+                    roomMap.putIfAbsent(3, "spiders");
+                    break;
 
                 case "4": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
-                        System.out.println(castleRooms.getKitchen() );
-                            answer = keyboard.nextLine();
+                    System.out.println(castleRooms.getKitchen());
+                    answer = keyboard.nextLine();
 
-                        while (!answer.equalsIgnoreCase("2")) {
-                            if (answer.equalsIgnoreCase("7")) {
-                                break;
-                            }
-                            System.out.println("North (7), West (2). Try again:");
-                            answer = keyboard.nextLine();
-                        }
+                    if (answer.equalsIgnoreCase("north"))
+                        answer = "7";
+                    else if (answer.equalsIgnoreCase("west"))
+                        answer = "2";
 
-                        if (visitRoom4) {
-                            numOfRoomsVisited++;
-                            listOfItemsSeen.append("bats.\n");
-                            visitRoom4 = false;
-                        }
+                    while (!answer.equalsIgnoreCase("2")) {
+                        if (answer.equalsIgnoreCase("7")
+                                || answer.equalsIgnoreCase("Q")) {
                             break;
+                        }
+                        System.out.println("North or West. Try again:");
+                        answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("north"))
+                            answer = "7";
+                        else if (answer.equalsIgnoreCase("west"))
+                            answer = "2";
+                    }
+
+                    roomMap.putIfAbsent(4, "bats");
+                    break;
 
                 case "5": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
-                        System.out.println(castleRooms.getDiningRoom() );
-                            answer = keyboard.nextLine();
+                    System.out.println(castleRooms.getDiningRoom() );
+                    answer = keyboard.nextLine();
 
-                        while (!answer.equalsIgnoreCase("3") ) {
-                            System.out.println("South (3). Try again:");
-                            answer = keyboard.nextLine();
-                        }
+                    if (answer.equalsIgnoreCase("south"))
+                        answer = "3";
 
-                        if (visitRoom5) {
-                            numOfRoomsVisited++;
-                            listOfItemsSeen.append("dust and empty box.\n");
-                            visitRoom5 = false;
-                        }
-
+                    while (!answer.equalsIgnoreCase("3") ) {
+                        if (answer.equalsIgnoreCase("Q")) {
                             break;
+                        }
+                        System.out.println("South. Try again:");
+                        answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("south"))
+                            answer = "3";
+                    }
+
+                    roomMap.putIfAbsent(5, "dust and empty box");
+                    break;
 
                 case "6": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
-                        System.out.println(castleRooms.getVault() );
-                        answer = keyboard.nextLine();
+                    System.out.println(castleRooms.getVault() );
+                    answer = keyboard.nextLine();
+
+                    if (answer.equalsIgnoreCase("east"))
+                        answer = "7";
 
                     while (!answer.equalsIgnoreCase("7")) {
-                        System.out.println("East (7). Try again:");
+                        if (answer.equalsIgnoreCase("Q")) {
+                            break;
+                        }
+                        System.out.println("East. Try again:");
                         answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("east"))
+                            answer = "7";
                     }
 
-                    if (visitRoom6) {
-                        numOfRoomsVisited++;
-                        listOfItemsSeen.append("three walking skeletons.\n");
-                        visitRoom6 = false;
-                    }
+                    roomMap.putIfAbsent(6, "three walking skeletons");
 
                     double random = Math.random();
                     answer = (random < 0.25) ? ("8") : ("7");
-                            break;
+                    break;
 
                 case "7": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
@@ -163,20 +199,27 @@ public class ZorkAdventureGroupGame {
                     System.out.println(castleRooms.getParlor());
                     answer = keyboard.nextLine();
 
+                    if (answer.equalsIgnoreCase("west"))
+                        answer = "6";
+                    else if (answer.equalsIgnoreCase("south"))
+                        answer = "4";
+
                     while (!answer.equalsIgnoreCase("4")) {
-                        if (answer.equalsIgnoreCase("6")) {
+                        if (answer.equalsIgnoreCase("6")
+                                || answer.equalsIgnoreCase("Q")) {
                             break;
                         }
-                        System.out.println("West (6) or South (4). Try again:");
+                        System.out.println("West or South. Try again:");
                         answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("west"))
+                            answer = "6";
+                        else if (answer.equalsIgnoreCase("south"))
+                            answer = "4";
                     }
 
-                    if (visitRoom7) {
-                        numOfRoomsVisited++;
-                        listOfItemsSeen.append("treasure chest.\n");
-                        visitRoom7 = false;
-                    }
-                            break;
+                    roomMap.putIfAbsent(7, "treasure chest");
+                    break;
 
                 case "8": personalTotal += (0.01 + Math.random() * 1000.0);
                     System.out.println("\n" + getPersonalTotal(personalTotal));
@@ -184,19 +227,30 @@ public class ZorkAdventureGroupGame {
                     System.out.println(castleRooms.getSecretRoom());
                     answer = keyboard.nextLine();
 
+                    if (answer.equalsIgnoreCase("west"))
+                        answer = "6";
+
                     while (!answer.equalsIgnoreCase("6")) {
-                        System.out.println("West (6). Try again:");
+                        if (answer.equalsIgnoreCase("Q")) {
+                            break;
+                        }
+                        System.out.println("West. Try again:");
                         answer = keyboard.nextLine();
+
+                        if (answer.equalsIgnoreCase("west"))
+                            answer = "6";
                     }
 
-                    if (visitRoom8) {
-                        numOfRoomsVisited++;
-                        listOfItemsSeen.append("piles of gold.\n");
-                        visitRoom8 = false;
-                    }
-                            break;
+                    roomMap.putIfAbsent(8, "piles of gold");
+                    visitedSecretRoom = true;
+                    break;
             }
         }
+        System.out.println("\n" + castleRooms.exit());
+        System.out.println("\nNumber of rooms visited: " + roomMap.size());
+        System.out.println("\nItems seen: \n" + roomMap.values());
+        formattedPersonalAmount = String.format("%.02f", personalTotal);
+        System.out.println("Total amount is $" + formattedPersonalAmount);
     }
 
     private static String getPersonalTotal(double personalTotal) {
