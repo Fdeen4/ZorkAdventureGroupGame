@@ -2,54 +2,80 @@ package com.company;
 
 public class CastleRooms {
 
-    public String getFoyer() {
+    public String getFoyerDescription() {
         return "You are standing in the foyer of an old house.\n"
-                + "You see a dead scorpion.\n" +
-                "{You can go to the north, exit, or press Q to quit}";
+                + "You see a dead scorpion.";
     }
 
-    public String getFrontRoom() {
+    public String getFoyerDirection() {
+        return "{You can go to the north, exit, or press Q to quit}";
+    }
+
+    public String getFrontRoomDescription() {
         return "You are standing in the front room of an old house.\n"
-                + "You see a piano.\n" +
-                "{You can go to the south, west, east, or press Q to quit}";
+                + "You see a piano.";
     }
 
-    public String getLibrary() {
+    public String getFrontRoomDirection() {
+        return "{You can go to the south, west, east, or press Q to quit}";
+    }
+
+    public String getLibraryDescription() {
         return "You are standing in the library of an old house.\n"
-                + "You see spiders. \n" +
-                "{You can go to the north, east, or press Q to quit}";
+                + "You see spiders.";
     }
 
-    public String getDiningRoom() {
+    public String getLibraryDirection() {
+        return "{You can go to the north, east, or press Q to quit}";
+    }
+
+    public String getDiningRoomDescription() {
         return "You are standing in the dinning room of an old house.\n"
-                + "You see dust and an empty box. \n" +
-                "{You can go to the south or press Q to quit}";
+                + "You see dust and an empty box.";
     }
 
-    public String getKitchen() {
+    public String getDiningRoomDirection() {
+        return "{You can go to the south or press Q to quit}";
+    }
+
+    public String getKitchenDescription() {
         return "You are standing in the kitchen of an old house.\n"
-                + "You see bats. \n" +
-                "{You can go to the west, north, or press Q to quit}";
+                + "You see bats.";
     }
 
-    public String getParlor() {
+    public String getKitchenDirection() {
+        return "{You can go to the west, north, or press Q to quit}";
+    }
+
+    public String getParlorDescription() {
 
         return "You are standing in the parlor of an old house.\n"
-                + "You see a treasure chest.\n" +
-                "{You can go to the west, south, or press Q to quit}";
+                + "You see a treasure chest.";
     }
 
-    public String getSecretRoom() {
+    public String getParlorDirection() {
+
+        return "{You can go to the west, south, or press Q to quit}";
+    }
+
+    public String getSecretRoomDescription() {
         return "You are standing in the secret room of an old house.\n"
-                + "You see piles of gold.\n" +
-                "{You can go to the west or press Q to quit}";
+                + "You see piles of gold.";
     }
 
-    public String getVault() {
-        return "You are standing in the vault of an old house.\n"
-                + "You see three walking skeletons.\n" +
-                "{You can go to the east or press Q to quit}";
+    public String getSecretRoomDirection() {
+        return "{You can go to the west or press Q to quit}";
     }
+
+    public String getVaultDescription() {
+        return "You are standing in the vault of an old house.\n"
+                + "You see three walking skeletons.";
+    }
+
+    public String getVaultDirection() {
+        return "{You can go to the east or press Q to quit}";
+    }
+
 
     public String exit() {
 
