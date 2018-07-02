@@ -7,6 +7,11 @@ public class CastleRooms {
                 + "You see a dead scorpion.";
     }
 
+    public String getLampFoyerDescription() {
+        return "You also see a spider web made from pure silk\n"
+                + "";
+    }
+
     public String getFoyerDirection() {
         return "{You can go to the north, exit, or press Q to quit}";
     }
@@ -74,6 +79,11 @@ public class CastleRooms {
 
     public String getVaultDirection() {
         return "{You can go to the east or press Q to quit}";
+    }
+
+    public String askToTakeMoney(String amountOfMoney) {
+        return "You found $" + amountOfMoney
+                + ".\nWould you like to take it (\"y\" or \"n\")?";
     }
 
 

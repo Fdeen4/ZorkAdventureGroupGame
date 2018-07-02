@@ -12,7 +12,8 @@ public class ZorkAdventureGroupGame {
         CastleRooms castleRooms = new CastleRooms();
         Random isMoneyStolen = new Random();
         String answer ="1", evilCharacterPresence;
-        HashMap<Integer, String> roomMap = new HashMap<>();
+        HashMap<Integer, String> roomItemsMap = new HashMap<>();
+        HashMap<Integer, String> roomLampItemsMap = new HashMap<>();
         HashMap<Integer, Double> personalTotalMap = new HashMap<>();
 
         boolean startOfGame = true, visitedSecretRoom = false;
@@ -28,16 +29,20 @@ public class ZorkAdventureGroupGame {
                     
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("1")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(1, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getFoyerDescription());
                     if (personalTotalMap.get(1) != 0.0) {
-                    output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(1))
-                            + ".\nWould you like to take it (\"y\" or \"n\")?");
+                    output(castleRooms.askToTakeMoney(
+                            convertToTwoDecimalPlaces(personalTotalMap.get(1))));
                     answer = keyboard.nextLine();
                     }
 
@@ -66,9 +71,9 @@ public class ZorkAdventureGroupGame {
                     if (answer.equalsIgnoreCase("exit")) {
                         if (visitedSecretRoom) {
                             output("\n\n\n" + castleRooms.exit());
-                            output("\nNumber of rooms visited: " + roomMap.size());
+                            output("\nNumber of rooms visited: " + roomItemsMap.size());
                             output("\nItems seen:");
-                            for(String item : roomMap.values()) {
+                            for(String item : roomItemsMap.values()) {
                                 output("* " + item);
                             }
                             output("\nTotal amount is $" + convertToTwoDecimalPlaces(personalTotal));
@@ -79,23 +84,27 @@ public class ZorkAdventureGroupGame {
                         }
                     }
 
-                    roomMap.putIfAbsent(1, "dead scorpion");
+                    roomItemsMap.putIfAbsent(1, "dead scorpion");
                     break;
 
                 case "2":
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("2")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(2, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getFrontRoomDescription());
                     if (personalTotalMap.get(2) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(2))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(2))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -131,23 +140,27 @@ public class ZorkAdventureGroupGame {
 
                     }
 
-                    roomMap.putIfAbsent(2, "piano");
+                    roomItemsMap.putIfAbsent(2, "piano");
                     break;
 
                 case "3":
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("3")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(3, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getLibraryDescription());
                     if (personalTotalMap.get(3) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(3))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(3))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -176,23 +189,27 @@ public class ZorkAdventureGroupGame {
                             answer = "2";
                     }
 
-                    roomMap.putIfAbsent(3, "spiders");
+                    roomItemsMap.putIfAbsent(3, "spiders");
                     break;
 
                 case "4":
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("4")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(4, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getKitchenDescription());
                     if (personalTotalMap.get(4) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(4))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(4))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -221,23 +238,27 @@ public class ZorkAdventureGroupGame {
                             answer = "2";
                     }
 
-                    roomMap.putIfAbsent(4, "bats");
+                    roomItemsMap.putIfAbsent(4, "bats");
                     break;
 
                 case "5":
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("5")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(5, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getDiningRoomDescription());
                     if (personalTotalMap.get(5) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(5))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(5))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -261,23 +282,27 @@ public class ZorkAdventureGroupGame {
                             answer = "3";
                     }
 
-                    roomMap.putIfAbsent(5, "dust and empty box");
+                    roomItemsMap.putIfAbsent(5, "dust and empty box");
                     break;
 
                 case "6":
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("6")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(6, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getVaultDescription());
                     if (personalTotalMap.get(6) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(6))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(6))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -304,7 +329,7 @@ public class ZorkAdventureGroupGame {
                             answer = "7";
                     }
 
-                    roomMap.putIfAbsent(6, "three walking skeletons");
+                    roomItemsMap.putIfAbsent(6, "three walking skeletons");
 
                     break;
 
@@ -312,16 +337,20 @@ public class ZorkAdventureGroupGame {
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("7")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(7, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getParlorDescription());
                     if (personalTotalMap.get(7) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(7))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(7))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -350,23 +379,27 @@ public class ZorkAdventureGroupGame {
                             answer = "4";
                     }
 
-                    roomMap.putIfAbsent(7, "treasure chest");
+                    roomItemsMap.putIfAbsent(7, "treasure chest");
                     break;
 
                 case "8":
 
                     evilCharacterPresence = Integer.toString(1 + isMoneyStolen.nextInt(8));
                     if (evilCharacterPresence.equalsIgnoreCase("7")) {
-                        output("The evil character stole all your money. Sorry...");
-                        personalTotal = 0;
+                        if (isMoneyStolen.nextBoolean()) {
+                            output("The evil character stole all your money. Sorry...");
+                            personalTotal = 0;
+                        } else {
+                            output("You dodged the evil character and your money was not stolen. Great job!");
+                        }
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
                     personalTotalMap.putIfAbsent(8, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getSecretRoomDescription());
                     if (personalTotalMap.get(8) != 0.0) {
-                        output("You found $" + convertToTwoDecimalPlaces(personalTotalMap.get(8))
-                                + ".\nWould you like to take it (\"y\" or \"n\")?");
+                        output(castleRooms.askToTakeMoney(
+                                convertToTwoDecimalPlaces(personalTotalMap.get(8))));
                         answer = keyboard.nextLine();
                     }
                     if (answer.equalsIgnoreCase("y")) {
@@ -390,15 +423,15 @@ public class ZorkAdventureGroupGame {
                             answer = "6";
                     }
 
-                    roomMap.putIfAbsent(8, "piles of gold");
+                    roomItemsMap.putIfAbsent(8, "piles of gold");
                     visitedSecretRoom = true;
                     break;
             }
         }
         output("\n\n\n" + castleRooms.exit());
-        output("\nNumber of rooms visited: " + roomMap.size());
+        output("\nNumber of rooms visited: " + roomItemsMap.size());
         output("\nItems seen:");
-        for(String item : roomMap.values()) {
+        for(String item : roomItemsMap.values()) {
             output("* " + item);
         }
         output("\nTotal amount is $" + convertToTwoDecimalPlaces(personalTotal));
