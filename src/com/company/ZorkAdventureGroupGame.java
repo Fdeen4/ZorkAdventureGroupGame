@@ -11,7 +11,7 @@ public class ZorkAdventureGroupGame {
         Scanner keyboard = new Scanner(System.in);
         CastleRooms castleRooms = new CastleRooms();
         Random random = new Random();
-        String answer ="1", evilCharacterPresence, lamp;
+        String answer ="1", evilCharacterPresence;
         HashMap<Integer, String> roomItemsMap = new HashMap<>();
         HashMap<Integer, String> roomLampItemsMap = new HashMap<>();
         HashMap<Integer, Double> personalTotalMap = new HashMap<>();
@@ -37,21 +37,14 @@ public class ZorkAdventureGroupGame {
                         }
                     }
 
-                    output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(1, 0.01 + Math.random() * 1000.0);
+                    output("\nYour current amount is $"
+                            + convertToTwoDecimalPlaces(personalTotal));
                     output(castleRooms.getFoyerDescription());
-                    if (personalTotalMap.get(1) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(1))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 1);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(1));
-                            personalTotalMap.replace(1, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "1");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "1");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         if (!roomLampItemsMap.containsKey(2)) {
@@ -99,21 +92,14 @@ public class ZorkAdventureGroupGame {
                         }
                     }
 
-                    output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(2, 0.01 + Math.random() * 1000.0);
+                    output("\nYour current amount is $"
+                            + convertToTwoDecimalPlaces(personalTotal));
                     output(castleRooms.getFrontRoomDescription());
-                    if (personalTotalMap.get(2) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(2))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 2);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(2));
-                            personalTotalMap.replace(2, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "2");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "2");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         output(castleRooms.getLampFrontRoomDescription());
@@ -169,21 +155,14 @@ public class ZorkAdventureGroupGame {
                         }
                     }
 
-                    output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(3, 0.01 + Math.random() * 1000.0);
+                    output("\nYour current amount is $"
+                            + convertToTwoDecimalPlaces(personalTotal));
                     output(castleRooms.getLibraryDescription());
-                    if (personalTotalMap.get(3) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(3))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 3);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(3));
-                            personalTotalMap.replace(3, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "3");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "3");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         output(castleRooms.getLampLibraryDescription());
@@ -250,20 +229,12 @@ public class ZorkAdventureGroupGame {
 
                     output("\nYour current amount is $" +
                             convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(4, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getKitchenDescription());
-                    if (personalTotalMap.get(4) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(4))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 4);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(4));
-                            personalTotalMap.replace(4, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "4");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "4");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         output(castleRooms.getLampKitchenDescription());
@@ -312,20 +283,12 @@ public class ZorkAdventureGroupGame {
 
                     output("\nYour current amount is $" +
                             convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(5, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getDiningRoomDescription());
-                    if (personalTotalMap.get(5) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(5))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 5);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(5));
-                            personalTotalMap.replace(5, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "5");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "5");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         if(!roomLampItemsMap.containsKey(3)) {
@@ -375,18 +338,9 @@ public class ZorkAdventureGroupGame {
 
                     output("\nYour current amount is $" +
                             convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(6, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getVaultDescription());
-                    if (personalTotalMap.get(6) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(6))));
-                        answer = keyboard.nextLine();
-
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(6));
-                            personalTotalMap.replace(6, 0.0);
-                        }
-                    }
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 6);
 
                     output(castleRooms.getVaultDirection());
                     answer = keyboard.nextLine();
@@ -426,20 +380,12 @@ public class ZorkAdventureGroupGame {
 
                     output("\nYour current amount is $" +
                             convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(7, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getParlorDescription());
-                    if (personalTotalMap.get(7) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(7))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 7);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(7));
-                            personalTotalMap.replace(7, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "7");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "7");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         if (!roomLampItemsMap.containsKey(4)) {
@@ -495,7 +441,6 @@ public class ZorkAdventureGroupGame {
                     }
 
                     output("\nYour current amount is $" + convertToTwoDecimalPlaces(personalTotal));
-                    personalTotalMap.putIfAbsent(8, 0.01 + Math.random() * 1000.0);
                     output(castleRooms.getSecretRoomDescription());
                     if (!roomLampItemsMap.containsKey(5)) {
                         output(castleRooms.askToTakePilesOfGold());
@@ -509,18 +454,11 @@ public class ZorkAdventureGroupGame {
                         }
                     }
 
-                    if (personalTotalMap.get(8) != 0.0) {
-                        output(castleRooms.askToTakeMoney(
-                                convertToTwoDecimalPlaces(personalTotalMap.get(8))));
-                        answer = keyboard.nextLine();
+                    personalTotal = getPersonalTotal(keyboard, castleRooms,
+                            personalTotalMap, personalTotal, 8);
 
-                        if (answer.equalsIgnoreCase("y")) {
-                            personalTotal += (personalTotalMap.get(8));
-                            personalTotalMap.replace(8, 0.0);
-                        }
-                    }
-
-                    AvailableLamp(keyboard, castleRooms, random, roomLampItemsMap, "8");
+                    AvailableLamp(keyboard, castleRooms, random,
+                            roomLampItemsMap, "8");
 
                     if (roomLampItemsMap.containsValue("lamp")) {
                         
@@ -559,12 +497,6 @@ public class ZorkAdventureGroupGame {
             }
         }
 
-        gameResults(castleRooms, roomItemsMap, roomLampItemsMap, personalTotal);
-        keyboard.close();
-    }
-
-    private static void gameResults(CastleRooms castleRooms, HashMap<Integer, String> roomItemsMap,
-                                    HashMap<Integer, String> roomLampItemsMap, double personalTotal) {
         output("\n\n\n" + castleRooms.exit());
         output("\nNumber of rooms visited: " + roomItemsMap.size());
         output("\nItems seen:");
@@ -576,12 +508,31 @@ public class ZorkAdventureGroupGame {
             output("* " + item);
         }
         output("\nTotal amount is $" + convertToTwoDecimalPlaces(personalTotal));
+
+        keyboard.close();
+    }
+
+    private static double getPersonalTotal(Scanner keyboard, CastleRooms castleRooms, 
+                                           HashMap<Integer, Double> personalTotalMap, 
+                                           double personalTotal, int roomNum) {
+        String answer;
+        personalTotalMap.putIfAbsent(roomNum, 0.01 + Math.random() * 1000.0);
+        if (personalTotalMap.get(roomNum) != 0.0) {
+            output(castleRooms.askToTakeMoney(
+                    convertToTwoDecimalPlaces(personalTotalMap.get(roomNum))));
+            answer = keyboard.nextLine();
+
+            if (answer.equalsIgnoreCase("y")) {
+                personalTotal += (personalTotalMap.get(roomNum));
+                personalTotalMap.replace(roomNum, 0.0);
+            }
+        }
+        return personalTotal;
     }
 
     private static void AvailableLamp(Scanner keyboard, CastleRooms castleRooms, Random random,
                                       HashMap<Integer, String> roomLampItemsMap, String roomNum) {
-        String lamp;
-        String answer;
+        String lamp, answer;
         lamp = Integer.toString(1 + random.nextInt(8));
         if (lamp.equalsIgnoreCase(roomNum)) {
             if (!roomLampItemsMap.containsValue("lamp")) {

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c024d5a-523c-40f3-ae3e-45a8c68b4121" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ZorkAdventureGroupGame/com/company/ZorkAdventureGroupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ZorkAdventureGroupGame/com/company/ZorkAdventureGroupGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/ZorkAdventureGroupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ZorkAdventureGroupGame.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,8 +17,8 @@
       <file leaf-file-name="ZorkAdventureGroupGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/ZorkAdventureGroupGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="203" column="52" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="52" />
+            <state relative-caret-position="45">
+              <caret line="534" column="21" selection-start-line="534" selection-start-column="21" selection-end-line="534" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,10 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getPersonalTotal</find>
-      <find>roomMap</find>
-      <find>&quot;The evil character stole all your money. Sorry..&quot;</find>
-      <find>Lamp</find>
       <find>isMoneyStolen</find>
       <find>random</find>
       <find>insp</find>
@@ -82,6 +76,10 @@
       <find>roomLampItemsMap.put(5</find>
       <find>piles o</find>
       <find>isSecre</find>
+      <find>personalTotalMap.putIfAbsent(2</find>
+      <find>personalTotal = ge</find>
+      <find>Available</find>
+      <find>lamp</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;\n&quot; + getPersonalTotal(personalTotal)</replace>
@@ -165,6 +163,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -263,6 +262,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.31570512" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -275,7 +275,6 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -515,8 +514,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/ZorkAdventureGroupGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="203" column="52" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="52" />
+        <state relative-caret-position="45">
+          <caret line="534" column="21" selection-start-line="534" selection-start-column="21" selection-end-line="534" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
